@@ -97,16 +97,14 @@ canvas{
 }
 
 
-.test{
+.positionAbsolute{
   position: absolute;
   padding-left: 0;
   padding-top: 0;
   z-index: 100;
 }
 
-.testRelative{
-  position: relative;
-}
+
 
 .navbar{
    position: absolute;
