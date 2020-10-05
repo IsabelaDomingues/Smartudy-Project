@@ -1,181 +1,303 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <title>SMARTUDY</title>
+	<title>SMARTUDY - Login</title>
+	<link rel="stylesheet" media="screen" href="css/style.css">
+	<!-- Fonte de textos -->
+	<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&display=swap" rel="stylesheet">
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <link rel="stylesheet" media="screen" href="css/style.css">
+	<style type="text/css">
+		@import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
 
-  <!-- Bootstrap-->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-  <link rel="stylesheet" type="text/css" href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/css/bootstrap-extended.min.css">
-  <link rel="stylesheet" type="text/css" href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/fonts/simple-line-icons/style.min.css">
-  <link rel="stylesheet" type="text/css" href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/css/colors.min.css">
-  <link rel="stylesheet" type="text/css" href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/css/bootstrap.min.css">
-  <!-- Fonte da frase APRENDER COM ###-->
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+		* {
+			box-sizing: border-box;
+		}
 
-  <!-- Fonte de textos -->
-  <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&display=swap" rel="stylesheet">
+		body {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			flex-direction: column;
+			font-family: Comfortaa;
+		}
 
-  <!-- Fonnte card de cursos-->
-  <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+		h1 {
+			font-weight: bold;
+			margin: 0;
+		}
 
-<style type="text/css">
-  html,
-body {
-    height: 100%;
+		h2 {
+			text-align: center;
+		}
+
+		p {
+			font-size: 14px;
+			font-weight: 100;
+			line-height: 20px;
+			letter-spacing: 0.5px;
+			margin: 20px 0 30px;
+		}
+
+		span {
+			font-size: 12px;
+		}
+
+		a {
+			color: #333;
+			font-size: 14px;
+			text-decoration: none;
+			margin: 15px 0;
+		}
+
+		button {
+			border-radius: 20px;
+			border: 1px solid #FF4B2B;
+			background-color: #FF4B2B;
+			color: #FFFFFF;
+			font-size: 12px;
+			font-weight: bold;
+			padding: 12px 45px;
+			letter-spacing: 1px;
+			text-transform: uppercase;
+			transition: transform 80ms ease-in;
+		}
+
+		button:active {
+			transform: scale(0.95);
+		}
+
+		button:focus {
+			outline: none;
+		}
+
+		button.ghost {
+			background-color: #2d325a;
+			border-color: black;
+		}
+
+		button.signIn{
+			background-color: #feb099;
+			border-color: white;
+			color: black;
+		}
+
+		form {
+			background-color: #FFFFFF;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			flex-direction: column;
+			padding: 0 50px;
+			height: 100%;
+			text-align: center;
+		}
+
+		input {
+			background-color: #eee;
+			border: none;
+			padding: 12px 15px;
+			margin: 8px 0;
+			width: 100%;
+		}
+
+		.container {
+			background-color: #fff;
+			border-radius: 10px;
+			box-shadow: 0 14px 28px rgba(0,0,0,0.25), 
+			0 10px 10px rgba(0,0,0,0.22);
+			position: relative;
+			overflow: hidden;
+			width: 768px;
+			max-width: 100%;
+			min-height: 480px;
+		}
+
+		.form-container {
+			position: absolute;
+			top: 0;
+			height: 100%;
+			transition: all 0.6s ease-in-out;
+		}
+
+		.sign-in-container {
+			left: 0;
+			width: 50%;
+			z-index: 2;
+		}
+
+		.container.right-panel-active .sign-in-container {
+			transform: translateX(100%);
+		}
+
+		.sign-up-container {
+			left: 0;
+			width: 50%;
+			opacity: 0;
+			z-index: 1;
+		}
+
+		.container.right-panel-active .sign-up-container {
+			transform: translateX(100%);
+			opacity: 1;
+			z-index: 5;
+			animation: show 0.6s;
+		}
+
+		@keyframes show {
+			0%, 49.99% {
+				opacity: 0;
+				z-index: 1;
+			}
+
+			50%, 100% {
+				opacity: 1;
+				z-index: 5;
+			}
+		}
+
+		.overlay-container {
+			position: absolute;
+			top: 0;
+			left: 50%;
+			width: 50%;
+			height: 100%;
+			overflow: hidden;
+			transition: transform 0.6s ease-in-out;
+			z-index: 100;
+		}
+
+		.container.right-panel-active .overlay-container{
+			transform: translateX(-100%);
+		}
+
+		.overlay {
+			background: #feb099;
+			background-repeat: no-repeat;
+			background-size: cover;
+			background-position: 0 0;
+			color: black;
+			position: relative;
+			left: -100%;
+			height: 100%;
+			width: 200%;
+			transform: translateX(0);
+			transition: transform 0.6s ease-in-out;
+		}
+
+		.container.right-panel-active .overlay {
+			transform: translateX(50%);
+		}
+
+		.overlay-panel {
+			position: absolute;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			flex-direction: column;
+			padding: 0 40px;
+			text-align: center;
+			top: 0;
+			height: 100%;
+			width: 50%;
+			transform: translateX(0);
+			transition: transform 0.6s ease-in-out;
+		}
+
+		.overlay-left {
+			transform: translateX(-20%);
+		}
+
+		.container.right-panel-active .overlay-left {
+			transform: translateX(0);
+		}
+
+		.overlay-right {
+			right: 0;
+			transform: translateX(0);
+		}
+
+		.container.right-panel-active .overlay-right {
+			transform: translateX(20%);
+		}
+
+::-webkit-input-placeholder {
+  font-family: 'Comfortaa', cursive;
 }
 
-.container {
-    height: 100%;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+:-ms-input-placeholder {
+  font-family: 'Comfortaa', cursive;
 }
 
-/*standard value for mobile devices, bootstrap is mobile first: */
-.margin-top {
-  margin-top: 40%;
+:-moz-placeholder {
+  font-family: 'Comfortaa', cursive;
 }
 
-/* Small devices (tablets, 768px and up) */
-@media (min-width: 768px) { 
-.margin-top {
-  margin-top: 35%;
+::-moz-placeholder {
+ font-family: 'Comfortaa', cursive;
 }
- }
-
-
-/* Medium devices (desktops, 992px and up) */
-@media (min-width: 992px) { 
- .margin-top {
-  margin-top: 15%;
-}
-}
-
-
-/* Large devices (large desktops, 1200px and up) */
-@media (min-width: 1200px) { 
-   .margin-top {
-  margin-top: 10%;
-}
- }
-
-
-</style>
+	</style>
 </head>
 <body>
 
- 
- <!-- Navbar transparente para WEB -->
-  <div class="mobileHide">
-    <header class="header">
-      <nav class="navbar navbar-expand-lg fixed-top py-2">
-        <a class="navbar-brand" href="./index.html"><img src=".\img\smartudy-logo.png" class="img-fluid navbarLogo"></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div id="navbarSupportedContent" class="collapse navbar-collapse" >
-          <ul class="navbar-nav ml-auto">
-            <!-- Botões do menu -->
-            <li class="nav-item"><a href="./login-form.html" class="nav-link text-uppercase font-weight-bold"><button type="button" class="btn btn-outline-light">Login</button></a></li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-  </header>
-</div>
-
-<!-- Fim da Navbar transparente para WEB -->
-
-<!-- Navbar para Mobile -->
-
-<div class="mobileShow" class="positionAbsolute">
-  <header class="header">
-    <nav class="navbar navbar-expand-lg fixed-top py-2 navbar-dark">
-      <a class="navbar-brand" href="./index.html"><img src=".\img\smartudy-logo.png" class="img-fluid navbarLogo" ></a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div id="navbarSupportedContent" class="collapse navbar-collapse" >
-        <ul class="navbar-nav ml-auto">
-          <!-- Botões da Navbar -->     
-          <li class="nav-item"><a href="./login-form.html" class="nav-link" style="font-family: 'Comfortaa', cursive; color: white !important">Login</a></li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-</header>
-</div>
-
-<!-- Fim da Navbar para Mobile-->
 
 
-<div style="padding-left: 5%;" class="positionAbsolute margin-top">
-<div class="container">
-  <div class="row">
-    <div class="col">
-        <img class="card-img-top" src="img/Plano.png" alt="Card image cap">
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item"><img src="img/escola-mensal.png" class="img-fluid"></li>
-    <li class="list-group-item"><img src="img/anual.png" class="img-fluid">
-    <p class="infoCardsText" style="font-weight: bold;">Page o valor correspondente ao ano completo e ganhe 10% de desconto.</p></li>
-  </ul>
-  <div class="card-body" style="justify-content: center !important">
-     <a class="button" href="#">Inscreva-se</a>
-  </div>
-    </div>
-    <div class="col">
-        <img class="card-img-top" src="img/PlanoInd.png" alt="Card image cap">
-  <ul class="list-group list-group-flush">
-     <li class="list-group-item"><img src="img/individual-mensal.png" class="img-fluid"></li>
-     <li class="list-group-item"><img src="img/anual.png" class="img-fluid">
-    <p class="infoCardsText" style="font-weight: bold;">Page o valor correspondente ao ano completo e ganhe 10% de desconto.</p></li>
-  </ul>
-  <div class="card-body" style="justify-content: center !important">
-     <a class="button" href="#">Inscreva-se</a>
-  </div>
-    </div>
-  </div>
-  </div>
-</div>
-  <!-- Propriedades Background -->
-
-  <!-- particles.js container -->
-  <div id="particles-js"></div>
-
-  <!-- scripts -->
-  <script src="../particles.js"></script>
-  <script src="js/app.js"></script>
-
-  <!-- stats.js -->
-  <script src="js/lib/stats.js"></script>
-  <script>
-    var count_particles, stats, update;
-    stats = new Stats;
-    stats.setMode(0);
-    stats.domElement.style.position = 'absolute';
-    stats.domElement.style.left = '0px';
-    stats.domElement.style.top = '0px';
-    document.body.appendChild(stats.domElement);
-    count_particles = document.querySelector('.js-count-particles');
-    update = function() {
-      stats.begin();
-      stats.end();
-      if (window.pJSDom[0].pJS.particles && window.pJSDom[0].pJS.particles.array) {
-        count_particles.innerText = window.pJSDom[0].pJS.particles.array.length;
-      }
-      requestAnimationFrame(update);
-    };
-    requestAnimationFrame(update);
-  </script>
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+	<div class="container" id="container">
+		<div class="form-container sign-up-container">
+			<form action="#">
+				<span><a class="navbar-brand" href="./index.html"><img src=".\img\smartudy-logo.png" class="img-fluid navbarLogo" ></a></span>
+				<h1 style="font-size: 1rem; padding-bottom: 2%">Verifique qual plano se adequa melhor à sua necessidade ; )</h1>
+				 <a class="button" href="./planos.html" style="background-color: #2d325a; color: #feb099">PLANOS</a>
+			</form>
+		</div>
+		<div class="form-container sign-in-container">
+			<form action="#">
+				
+				<!--<h1 style="font-size: 1.2rem">Autentique-se</h1>-->
+				<a class="navbar-brand" href="./index.html"><img src=".\img\smartudy-logo.png" class="img-fluid navbarLogo" ></a>
+				<input type="email" placeholder="E-mail" />
+				<input type="password" placeholder="Senha" />
+				<a href="#">Esqueceu sua senha?</a>
+				<button class="signIn">Entre</button>
+				
+			</form>
+		</div>
+		<div class="overlay-container">
+			<div class="overlay">
+				<div class="overlay-panel overlay-left">
+					<h1 style="font-size: 1.2rem">Já possui cadastro?</h1>
+					<p>Efetue o login.</p>
+					<button class="ghost" id="signIn">Entre</button>
+				</div>
+				<div class="overlay-panel overlay-right">
+					<h1 style="font-size: 1.2rem">Hey! Sua primeira vez por aqui?</h1>
+					<p>Entre nessa jornada de inovação com a gente.</p>
+					<button class="ghost" id="signUp">Registre-se</button>
+				</div>
+			</div>
+		</div>
+	</div>
 
 
+	<!-- particles.js container -->
+	<div id="particles-js"></div>
+
+	<!-- scripts -->
+	<script src="../particles.js"></script>
+	<script src="js/app.js"></script>
+
+	<!-- stats.js -->
+	<script type="text/javascript">
+		const signUpButton = document.getElementById('signUp');
+		const signInButton = document.getElementById('signIn');
+		const container = document.getElementById('container');
+
+		signUpButton.addEventListener('click', () => {
+			container.classList.add("right-panel-active");
+		});
+
+		signInButton.addEventListener('click', () => {
+			container.classList.remove("right-panel-active");
+		});
+	</script>
 </body>
 </html>
