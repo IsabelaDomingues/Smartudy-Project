@@ -257,12 +257,11 @@
 				<input type="email" placeholder="E-mail" />
 				<input type="password" placeholder="Senha" />
 				<a href="#">Esqueceu sua senha?</a>
-				<button class="signIn">Entre</button>
-				
+				<button class="signIn" onclick="abreInicio()">Entre</button>
 			</form>
 		</div>
 		<div class="overlay-container">
-			<div class="overlay">
+			<div class="overlay mobileHide">
 				<div class="overlay-panel overlay-left">
 					<h1 style="font-size: 1.2rem">Já possui cadastro?</h1>
 					<p>Efetue o login.</p>
@@ -287,6 +286,7 @@
 
 	<!-- stats.js -->
 	<script type="text/javascript">
+
 		const signUpButton = document.getElementById('signUp');
 		const signInButton = document.getElementById('signIn');
 		const container = document.getElementById('container');
